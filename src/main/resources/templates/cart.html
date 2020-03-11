@@ -24,10 +24,6 @@
     <h1>Shopping Cart</h1>
 <!--    <h2>Your Items</h2> -->
 <!--    <h1>Current Cart: </h1>-->
-    <div style="float: right">
-    <a th:href="@{/placeOrder}"><button type="button" class="btn btn-small btn-primary" >Place Order</button></a>
-    <a th:href="@{/orderHistory}"><button type="button" class="btn btn-small btn-primary" >Past Orders</button></a>
-    </div>
     <br>
 
     <!--List Products in Cart-->
@@ -53,11 +49,15 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td th:inline="text"><strong>Total<br>[[${cart.sum}]]</strong></td>
+                <td th:inline="text"><strong>Cart Total<br>[[${cart.sum}]]</strong></td>
+                <p><strong>Free Shipping on Orders Over $50, $7.99 Standard Shipping on Orders Under $50</strong></p>
+                <td th:inline="text"><strong>Total w/Shipping<br>[[${cart.total}]]</strong></td>
             </tr>
             </tbody>
         </table>
+        <div style="float: right">
+            <a th:href="@{/checkout}"><button type="button" class="btn btn-small btn-primary" >Place Order</button></a>
+        </div>
     </div>
 
 

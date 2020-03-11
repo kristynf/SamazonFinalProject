@@ -28,7 +28,9 @@
             <td></td>
             <td>Product</td>
             <td>Description</td>
-            <td>Price</td>
+            <td>Product Price</td>
+            <td>Cart Price</td>
+            <td>Total Price w/Shipping</td>
         </tr>
         </thead>
 
@@ -38,18 +40,26 @@
             <td th:inline="text"><strong>[[${product.name}]]</strong></td>
             <td th:text="${product.description}"></td>
             <td th:text="${product.price}"></td>
+
         </tr>
 
         <tr>
             <td></td>
             <td></td>
             <td></td>
-            <div th:if="${cart.sum} < 50">
-                <div th ${cart.sum} += 7.99></div>
-                <div th:else="${cart.sum} += 0"></div>
+
+
 
             <td th:inline="text"><strong>Total<br>[[${cart.sum}]]</strong></td>
-            </div>
+            <td th:text="${cart.sum}"></td>
+            <p><strong>Free Shipping on Orders Over $50, $7.99 Standard Shipping on Orders Under $50</strong></p>
+            <td th:text="${cart.total}"></td>
+            <form th:action="@{/creditform}" th:object="${cart}" method="post">
+                <br>
+                <button type="submit" value="Submit" class="btn btn-lg btn-outline-light"><strong>Checkout</strong></button>
+                <br>
+            </form>
+
         </tr>
         </tbody>
     </table>

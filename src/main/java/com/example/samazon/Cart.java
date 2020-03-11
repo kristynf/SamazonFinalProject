@@ -11,6 +11,7 @@ public class Cart {
     private long id;
     private boolean enabled;
     private double sum;
+    private double total;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -75,4 +76,11 @@ public class Cart {
         this.productsInCart = productsInCart;
     }
 
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
 }

@@ -281,6 +281,7 @@ public class HomeController {
     /*@RequestMapping("/cart/{cart_id}")*/
     public String cart(Model model, Principal principal, Authentication authentication /*@PathVariable("cart_id") long id*/) {
         double sum = 0;
+        double total = 0;
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
@@ -292,10 +293,10 @@ public class HomeController {
 
             for(Product product : productsInCart){
                 sum += product.getPrice();
-                System.out.println("(if) sum = " + sum);
-            }
-
+            }if (sum < 50){
+                total = sum + 7.99;} else total = sum +=0;
             currentCart.setSum(sum);
+            currentCart.setTotal(total);
             cartRepository.save(currentCart);
         }
         else {
@@ -411,8 +412,11 @@ public class HomeController {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //Credit form
 
-    @RequestMapping("/credit")
-    public String creditform(){
+    @RequestMapping("/creditform")
+    public String creditform(Model model, Principal principal){
+        model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("carts", cartRepository.findAll());
+        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
         return "creditform";
     }
 
