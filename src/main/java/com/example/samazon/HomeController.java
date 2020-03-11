@@ -41,7 +41,8 @@ public class HomeController {
     //////////////////////////////////////////////// SECURITY ////////////////////////////////////////////////
 
     @RequestMapping("/login")
-    public String login(){
+    public String login(Model model){
+        model.addAttribute("categories", categoryRepository.findAll());
         return "login";
     }
 
@@ -53,12 +54,16 @@ public class HomeController {
     @GetMapping("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
+        model.addAttribute("categories", categoryRepository.findAll());
+
         return "registration";
     }
 
     @PostMapping("/register")
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
         model.addAttribute("user", user);
+        model.addAttribute("categories", categoryRepository.findAll());
+
         if (result.hasErrors()){
             return "registration";
         } else {
@@ -74,6 +79,8 @@ public class HomeController {
     public String secure(Principal principal, Model model){
         String username = principal.getName();  /* Principal.getName <-- this gets you the current user's "username" */
         model.addAttribute("user", userRepository.findByUsername(username));
+        model.addAttribute("categories", categoryRepository.findAll());
+
         return "secure";
     }
 
@@ -159,6 +166,8 @@ public class HomeController {
     @GetMapping("/addCategory")
     public String formCategory(Model model){
         model.addAttribute("category", new Category());
+        model.addAttribute("categories", categoryRepository.findAll());
+
         return "formCategory";
     }
 
@@ -238,6 +247,8 @@ public class HomeController {
     public String updateproduct(@PathVariable("id") long id, Model model, Principal principal) {
         model.addAttribute("product", productRepository.findById(id).get());
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+        model.addAttribute("categories", categoryRepository.findAll());
+
 
         Product product = productRepository.findById(id).get();
 //        String pic=product.getImage();                //THE HARD WAY USING REQUESTPARAM
@@ -258,6 +269,8 @@ public class HomeController {
     public String removeProduct(@PathVariable("id") long id, Model model) {
         model.addAttribute("carts", cartRepository.findAll());
         model.addAttribute("product", productRepository.findById(id).get());
+        model.addAttribute("categories", categoryRepository.findAll());
+
 
 //        Cart currentCart = cartRepository.findById(id);
 //        currentCart.removeProductFromSet(product);
@@ -334,7 +347,9 @@ public class HomeController {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //EMPTY CART PAGE
     @RequestMapping("/emptycart")
-    public String emptycart(){
+    public String emptycart(Model model){
+        model.addAttribute("categories", categoryRepository.findAll());
+
         return "emptycart";
     }
 
@@ -346,6 +361,8 @@ public class HomeController {
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+        model.addAttribute("categories", categoryRepository.findAll());
+
 
 
         if(cartRepository.findByEnabledAndUser(true, userService.getUser()) != null){
@@ -394,6 +411,8 @@ public class HomeController {
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+        model.addAttribute("categories", categoryRepository.findAll());
+
         return "checkout";
     }
 
@@ -411,6 +430,8 @@ public class HomeController {
     @RequestMapping("/finalConfirm")
     public String finalConfirm(Model model){
         model.addAttribute("user", new User());
+        model.addAttribute("categories", categoryRepository.findAll());
+
 //        model.addAttribute("carts", cartRepository.findAll());
 
         SimpleMailMessage msg = new SimpleMailMessage(); //send confirmation email
@@ -452,6 +473,8 @@ public class HomeController {
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+        model.addAttribute("categories", categoryRepository.findAll());
+
         return "creditform";
     }
 

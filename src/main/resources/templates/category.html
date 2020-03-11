@@ -26,18 +26,6 @@
 </div>
 
 <div class="container bg-faded text-white">
-    <!--Category Navbar-->
-    <br>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active">
-            <a href="/"><button type="button" class="btn btn-outline-dark"> All </button></a>&emsp;
-        </li>
-        <div th:each="category : ${categories}">
-            <li class="breadcrumb-item">
-                <a th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-outline-dark" th:text="${category.name}"></button></a>&emsp;
-            </li>
-        </div>
-    </ol>
 
     <!-- Project One -->
     <div th:each="product : ${category.products}">

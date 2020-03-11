@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 //4.03 USING ROLES FOR PAGE PERMISSIONS
                 .antMatchers( "/", "/h2-console/**", "/style.css", "/images/**",
-                        "/detail/**", "/category/**", "/register").permitAll() //.access("hasAnyAuthority('USER','ADMIN')")   //4.04 ADDING H2 DATABASE
+                        "/detail/**", "/base", "/category/**", "/register").permitAll() //.access("hasAnyAuthority('USER','ADMIN')")   //4.04 ADDING H2 DATABASE
 
                 .antMatchers("/admin").access("hasAuthority('ADMIN')")
 
