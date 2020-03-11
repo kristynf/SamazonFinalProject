@@ -15,19 +15,23 @@
 
 <!--Navigation Bar-->
 <div th:replace="base :: navbar"></div>
+<div th:replace="base :: categorybar"></div>
 <br>
 <br>
 
 
+<!--List Products in Cart-->
 <div class="container">
 
     <h1>Shopping Cart</h1>
-<!--    <h2>Your Items</h2> -->
-<!--    <h1>Current Cart: </h1>-->
+    <div style="float: right">
+        <a th:href="@{/checkout}"><button type="button" class="btn btn-small btn-primary" >Place Order</button></a>
+        <!--<a th:href="@{/orderHistory}"><button type="button" class="btn btn-small btn-primary" >Past Orders</button></a>-->
+    </div>
     <br>
 
-    <!--List Products in Cart-->
-    <div th:each="cart : ${carts}">
+    <div th:object="${cart1}">
+        <h1 th:inline="text">Order ID: [[${cart1.id}]]</h1>
         <table class="table table-dark table-hover table-striped">
             <thead>
             <tr style="font-family: 'Spectral SC', serif;">
@@ -39,7 +43,7 @@
             </thead>
 
             <tbody>
-            <tr th:each="product : ${cart.productsInCart}">
+            <tr th:each="product : ${cart1.productsInCart}">
                 <td><img th:src="${product.image}" class="img-thumbnail"></td>
                 <td th:inline="text"><strong>[[${product.name}]]</strong></td>
                 <td th:text="${product.description}"></td>
@@ -49,19 +53,14 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td th:inline="text"><strong>Cart Total<br>[[${cart.sum}]]</strong></td>
+                <td th:inline="text"><strong>Cart Total<br>[[${cart1.sum}]]</strong></td>
                 <p><strong>Free Shipping on Orders Over $50, $7.99 Standard Shipping on Orders Under $50</strong></p>
-                <td th:inline="text"><strong>Total w/Shipping<br>[[${cart.total}]]</strong></td>
+                <td th:inline="text"><strong>Total w/Shipping<br>[[${cart1.total}]]</strong></td>
             </tr>
             </tbody>
         </table>
-        <div style="float: right">
-            <a th:href="@{/checkout}"><button type="button" class="btn btn-small btn-primary" >Place Order</button></a>
-        </div>
+
     </div>
-
-
-
 </div>
 
 

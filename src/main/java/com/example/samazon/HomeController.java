@@ -267,32 +267,31 @@ public class HomeController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    //CART PAGE
-//    @RequestMapping("/cart/{user_id}")
-//    public String cart(@PathVariable("user_id") long id, Model model, Principal principal){
-//        model.addAttribute("products", productRepository.findAll());
-//        model.addAttribute("carts", cartRepository.findAll());
-//
-////      model.addAttribute("product", new Product());
-//        model.addAttribute("product", productRepository.findById(id).get());
-//
-//        model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
-//    }
-//    }
+//    @RequestMapping("/cart")
+//    public String cart(Model model, Principal principal, Authentication authentication) {
+//    @RequestMapping("/cart/{cart_id}")
+//    public String cart(Model model, Principal principal, Authentication authentication, @PathVariable("cart_id") long id) {
+    @RequestMapping("/cart/{user_id}")
+    public String cart(@PathVariable("user_id") long id, Model model, Authentication authentication, Principal principal){
 
-    //CART PAGE -- SIMPLIFIED VERSION
-    @RequestMapping("/cart")
-    /*@RequestMapping("/cart/{cart_id}")*/
-    public String cart(Model model, Principal principal, Authentication authentication /*@PathVariable("cart_id") long id*/) {
         double sum = 0;
         double total = 0;
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
+        model.addAttribute("cart_id", cartRepository.findByEnabledAndUser(true, userService.getUser()));
 
-        if(cartRepository.findByEnabled(true) != null){
-            Cart currentCart = cartRepository.findByEnabled(true);
+//        if(userService.getUser() != null) {
+//            model.addAttribute("user_id", userService.getUser().getId());
+//        }
+
+
+        //check if an active cart exists, and if that cart is tied to the current user
+        if((cartRepository.findByEnabledAndUser(true, userService.getUser()) != null)){
+            Cart currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
             Set<Product> productsInCart = currentCart.getProductsInCart();
+
 
             for(Product product : productsInCart){
                 sum += product.getPrice();
@@ -301,14 +300,21 @@ public class HomeController {
             currentCart.setSum(sum);
             currentCart.setTotal(total);
             cartRepository.save(currentCart);
-        }
-        else {
-            Cart currentCart = new Cart();
-            currentCart.setEnabled(true); //sets this cart as "active"
 
-            Set<Product> productsInCart = new HashSet<>();
-            currentCart.setProductsInCart(productsInCart);
-            cartRepository.save(currentCart);
+            model.addAttribute("cart1", currentCart);
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
+        //otherwise, create a new cart to use
+        else {
+            return "emptycart";
+//            Cart currentCart = new Cart();
+//            currentCart.setEnabled(true); //sets this cart as "active"
+//            currentCart.setUser(userService.getUser());
+//
+//            Set<Product> productsInCart = new HashSet<>();
+//            currentCart.setProductsInCart(productsInCart);
+//            cartRepository.save(currentCart);
+//            model.addAttribute("cart1", currentCart);
         }
 
         //check for currently logged in "user", if no current user then set to "0" to prevent errors
@@ -316,7 +322,7 @@ public class HomeController {
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
-            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+//            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
             return "cart";
         } catch (Exception e) {
             model.addAttribute("product_user_id", 0);
@@ -325,7 +331,14 @@ public class HomeController {
 
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //EMPTY CART PAGE
+    @RequestMapping("/emptycart")
+    public String emptycart(){
+        return "emptycart";
+    }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //ADD PRODUCT TO CART
     @RequestMapping("/addToCart/{id}")
     public String addToCart(@PathVariable("id") long id, Model model, Principal principal, Authentication authentication){
@@ -335,9 +348,8 @@ public class HomeController {
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
 
 
-
-        if(cartRepository.findByEnabled(true) != null){
-            Cart currentCart = cartRepository.findByEnabled(true);
+        if(cartRepository.findByEnabledAndUser(true, userService.getUser()) != null){
+            Cart currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
 //            Set<Product> productsInCart = new HashSet<>();
             Set<Product> productsInCart = currentCart.getProductsInCart();
             productsInCart.add(productRepository.findById(id).get());
@@ -352,6 +364,8 @@ public class HomeController {
             Set<Product> productsInCart = new HashSet<>();
             productsInCart.add(productRepository.findById(id).get());
             currentCart.setProductsInCart(productsInCart);
+
+            currentCart.setUser(userService.getUser());
 
             cartRepository.save(currentCart);
         }
@@ -397,6 +411,8 @@ public class HomeController {
     @RequestMapping("/finalConfirm")
     public String finalConfirm(Model model){
         model.addAttribute("user", new User());
+//        model.addAttribute("carts", cartRepository.findAll());
+
         SimpleMailMessage msg = new SimpleMailMessage(); //send confirmation email
         msg.setTo(userService.getUser().getEmail()); //add comma in between emails to send to multiple accounts
 
@@ -404,7 +420,14 @@ public class HomeController {
         msg.setText("Thank you for your order \n You will arrive within 10 days");
 
         javaMailSender.send(msg);
+
+//        Cart currentCart = new Cart();
+//        currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
+//        currentCart.setEnabled(false);
+//        cartRepository.save(currentCart);
+
         return "finalConfirm";
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
