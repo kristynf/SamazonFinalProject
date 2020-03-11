@@ -1,6 +1,8 @@
 package com.example.samazon;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +33,8 @@ public class HomeController {
     private UserService userService;
     @Autowired
     CartRepository cartRepository;
-
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////// SECURITY ////////////////////////////////////////////////
@@ -393,6 +396,13 @@ public class HomeController {
     //FINAL CONFIRMATION PAGE BEFORE PLACING ORDER
     @RequestMapping("/finalConfirm")
     public String finalConfirm(){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(userService.getUser().getEmail); //add comma in between emails to send to multiple accounts
+
+        msg.setSubject("Thank you for your order");
+        msg.setText("Hello World \n Spring Boot Email");
+
+        javaMailSender.send(msg);
         return "finalConfirm";
     }
 
