@@ -395,12 +395,13 @@ public class HomeController {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //FINAL CONFIRMATION PAGE BEFORE PLACING ORDER
     @RequestMapping("/finalConfirm")
-    public String finalConfirm(){
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(userService.getUser().getEmail); //add comma in between emails to send to multiple accounts
+    public String finalConfirm(Model model){
+        model.addAttribute("user", new User());
+        SimpleMailMessage msg = new SimpleMailMessage(); //send confirmation email
+        msg.setTo(userService.getUser().getEmail()); //add comma in between emails to send to multiple accounts
 
         msg.setSubject("Thank you for your order");
-        msg.setText("Hello World \n Spring Boot Email");
+        msg.setText("Thank you for your order \n You will arrive within 10 days");
 
         javaMailSender.send(msg);
         return "finalConfirm";
@@ -424,6 +425,7 @@ public class HomeController {
 
     @RequestMapping("/creditform")
     public String creditform(Model model, Principal principal){
+        model.addAttribute("user", new User());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
