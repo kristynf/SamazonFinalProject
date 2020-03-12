@@ -7,7 +7,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/style.css">
     <style>
-        * { border: 1px solid red !important; }
+        /** { border: 1px solid red !important; }*/
     </style>
 
 </head>
@@ -20,45 +20,45 @@
 
 <!--Header-->
 <div class="container">
-    <h1 class="mt-4 mb-3">Showroom <small style="color: white" th:inline="text">[[${category.name}]]s</small></h1>
+    <h1 class="display-3" th:inline="text">[[${category.name}]]</h1>
+<!--    <h1 class="mt-4 mb-3">Showroom <small style="color: white" th:inline="text">[[${category.name}]]s</small></h1>-->
 </div>
+
+
+
+
+
 
 
 <!--List of Products in Selected Category-->
 <div class="container text-white">
+    <div class="row"> <!--text-center text-lg-left-->
+<!--        <div class="card-deck">-->
+        <!-- List of Products -->
+        <div th:each="product : ${category.products}" class="col-lg-3 col-md-4 col-6 mb-4">
 
-    <div class="row">
-        <div class="row text-center text-lg-left">
-
-            <!-- List of Products -->
-            <div class="card-deck">
-                <div th:each="product : ${category.products}" class="col-lg-3 col-md-4 col-6">
-
-                    <div class="card" style="width: 18rem; height: 100%; color: black">
-                        <img class="card-img-top" th:src="${product.image}" alt="">
-                        <div class="card-img-top">
-                            <!--<p th:inline="text"><strong>[[${product.name}]]</strong></p>-->
-                        </div>
-                        <div class="card-body" style="color: black">
-                            <p th:inline="text"><strong>[[${product.name}]]</strong></p>
-                            <p th:inline="text" style="font-style: italic">[[${product.category.name}]]</p>
-                            <hr class="text-muted">
-                            <p th:inline="text"><strong style="color: red">[[${product.price}]]</strong></p>
-                            <p th:inline="text">[[${product.description}]]</p>
-                        </div>
-                        <div class="card-footer">
-                            <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
-                            <a th:href="@{/addToCart/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-success" >Add to Cart</button></a>
-                            <br><br>
-                            <div th:if="${product.user.getId()} == ${product_user_id}">
-                                <a th:href="@{/update/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
-                                <a th:href="@{/delete/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-danger" >Delete</button></a>
-                            </div>
-                        </div>
+            <div class="card mx-auto" style="width: 18rem; height: 100%; color: black;">
+                <img class="card-img-top" th:src="${product.image}" alt="">
+                <div class="card-img-top">
+                    <!--<p th:inline="text"><strong>[[${product.name}]]</strong></p>-->
+                </div>
+                <div class="card-body" style="color: black">
+                    <p th:inline="text"><strong>[[${product.name}]]</strong></p>
+                    <p th:inline="text" style="font-style: italic">[[${product.category.name}]]</p>
+                    <hr class="text-muted">
+                    <p th:inline="text"><strong style="color: red">[[${product.price}]]</strong></p>
+                    <p th:inline="text">[[${product.description}]]</p>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
+                    <a th:href="@{/addToCart/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-success" >Add to Cart</button></a>
+                    <br><br>
+                    <div th:if="${product.user.getId()} == ${product_user_id}">
+                        <a th:href="@{/update/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
+                        <a th:href="@{/delete/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-danger" >Delete</button></a>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

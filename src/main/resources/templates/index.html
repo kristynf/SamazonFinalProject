@@ -30,7 +30,8 @@
 
 <!--Header-->
 <div class="container">
-    <h1 class="mt-4 mb-3">Showroom <small style="color: white">Current Inventory</small></h1>
+    <h1 class="mt-4 mb-3 display-3" th:inline="text">All Products</h1>
+<!--    <h1 class="mt-4 mb-3">Showroom <small style="color: white">Current Inventory</small></h1>-->
 </div>
 
 
@@ -38,14 +39,14 @@
 <div class="container text-white">
 
     <div class="row">
-        <hr class="mt-2 mb-5">
         <div class="row text-center text-lg-left">
 
             <!-- List of Products -->
             <div class="card-deck">
             <div th:each="product : ${products}" class="col-lg-3 col-md-4 col-6">
+<!--            <div th:each="product : ${products}" class="col" style="width: 25%">-->
 
-                <div class="card" style="width: 18rem; height: 100%; color: #2c1910; background: #d8cfb5">
+                <div class="card" style="width: 18rem; height: 100%; color: black; /*background: #d8cfb5*/">
 <!--                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">-->
                     <img class="card-img-top" th:src="${product.image}" alt="" style="height: 200px; object-fit: contain">
                     <div class="card-img-top">
