@@ -18,10 +18,6 @@
 <br>
 <br>
 
-<div class="container">
-    <!--Header-->
-    <h1 class="mt-4 mb-3">Showroom <small style="color: white" th:inline="text">Vehicle</small></h1>
-</div>
 
 <div class="container text-white">
 
@@ -39,8 +35,7 @@
                 <h1 th:inline="text">[[${product.name}]]</h1>
                 <div th:inline="text">Description: [[${product.description}]]</div>
                 <div th:inline="text">Category: [[${product.category.name}]]</div>
-                <div th:inline="text">Price: [[${product.price}]]</div>
-                <div th:inline="text">Added by: [[${product.user.username}]]</div>
+                <div th:inline="text">$[[${product.price}]]</div>
 
                 <br>
 
