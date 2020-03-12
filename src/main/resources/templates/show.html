@@ -24,18 +24,6 @@
 </div>
 
 <div class="container bg-faded text-white">
-    <!--Category Navbar-->
-    <br>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active">
-            <a href="/"><button type="button" class="btn btn-outline-dark"> All </button></a>&emsp;
-        </li>
-        <div th:each="category : ${categories}">
-            <li class="breadcrumb-item">
-                <a th:href="@{/category/{id}(id=${category.id})}"><button type="button" class="btn btn-outline-dark" th:text="${category.name}"></button></a>&emsp;
-            </li>
-        </div>
-    </ol>
 
     <!-- Project One -->
 <!--    <div th:each="product : ${category.products}">-->
@@ -56,7 +44,8 @@
 
                 <br>
 
-                <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
+                <!--<a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>-->
+                <a th:href="@{/addToCart/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-success" >Add to Cart</button></a>
                 <br><br>
                 <div th:if="${product.user.getId()} == ${product_user_id}">
                     <a th:href="@{/update/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-warning" >Update</button></a>
