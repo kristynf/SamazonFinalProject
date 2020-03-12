@@ -42,7 +42,7 @@
 
             <tbody>
             <tr th:each="product : ${cart.productsInCart}">
-                <td><img th:src="${product.image}" class="img-thumbnail"></td>
+                <td><img th:src="${product.image}" class="img-thumbnail" style="height: 180px; object-fit: scale-down"></td>
                 <td th:inline="text"><strong>[[${product.name}]]</strong></td>
                 <td th:text="${product.description}"></td>
                 <td class="text-nowrap" th:inline="text"><strong>$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]</strong></td>

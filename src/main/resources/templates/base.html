@@ -23,7 +23,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark <!--fixed-top-->" id="mainNav" >
         <div class="container"><!-- style="font-family: 'Spectral SC', serif;">-->
-            <a class="navbar-brand" href="/"> <!--style="font-family: 'Julius Sans One', sans-serif;">--><img src="https://res.cloudinary.com/dblb2mhw4/image/upload/c_scale,h_60/v1584040171/Logo/whitecuplogo_med6d8.png"> Get your Fix. </a>
+            <a class="navbar-brand" href="/"> <!--style="font-family: 'Julius Sans One', sans-serif;">--><img src="https://res.cloudinary.com/dblb2mhw4/image/upload/c_scale,h_60/v1584040171/Logo/whitecuplogo_med6d8.png"> <button type="button" class="btn btn-outline-light">Get your Fix.</button> </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -32,18 +32,20 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <form th:action="@{/search}" method="post">
-                            <input type="text" size="75" name="search" placeholder="Search for a product" required> <!--the "search" from RequestParam-->
-                            <input type="submit" value="Enter">
+                        <a class="nav-link text-nowrap" href="/"><button type="button" class="btn btn-outline-light">Home</button></a>&emsp;
+                    </li>
+
+                    <li class="nav-item">
+                        <form th:action="@{/search}" method="post" class="" >
+                            <input class="form-control" type="text" size="100" name="search" placeholder="Search for a product" required>
+                            <!--<button type="submit" class="btn btn-light">Search</button>-->
                         </form>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"> Home </a>
-                    </li>
+
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/secure"> My Account </a>
+                        <a class="nav-link text-nowrap" href="/secure"><button type="button" class="btn btn-outline-light">Account</button></a>&emsp;
                     </li>
 
                     <!--                    <li class="nav-item" th:if="${user_id} == null">-->
@@ -54,8 +56,11 @@
                     <!--                        <a class="nav-link" href="/secure"> My Account </a>-->
                     <!--                    </li>-->
 
+                    <li class="nav-item" th:if="${user_id} == null">
+                        <a class="nav-link" th:href="@{/login}"> <button type="button" class="btn btn-outline-warning">Login</button> </a>
+                    </li>
                     <li class="nav-item" th:if="${user_id} != null">
-                        <a class="nav-link" th:href="@{/cart/{user_id}(user_id=${user_id})}"> <button type="button" class="btn btn-warning">Cart</button> </a>
+                        <a class="nav-link" th:href="@{/cart/{user_id}(user_id=${user_id})}"> <button type="button" class="btn btn-outline-warning">Cart</button> </a>
                     </li>
 
                 </ul>
@@ -69,23 +74,23 @@
 <!-- Category Menu Bar -->
 <div class="navigation" th:fragment="categorybar">
 
-    <nav class="navbar navbar-expand-lg navbar-dark <!--fixed-top-->" id="categoryNav" style="background: #d8cfb5; color: black ">
+    <nav class="navbar navbar-expand-lg <!--navbar-dark--> <!--fixed-top-->" id="categoryNav" style="background: #d8cfb5; color: black ">
         <div class="container"> <!--style="font-family: 'Spectral SC', serif;"-->
-<!--            <a class="navbar-brand" href="/" style="font-family: 'Julius Sans One', sans-serif;"><img src="https://res.cloudinary.com/dwsdggfi5/image/upload/c_scale,h_40/v1583438126/Images/Avatar/appa_logo_j9dof2.png" style="opacity: 1"> Hotline Coffee </a>-->
-<!--            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                Menu-->
-<!--                <i class="fas fa-bars"></i>-->
-<!--            </button>-->
+            <!--            <a class="navbar-brand" href="/" style="font-family: 'Julius Sans One', sans-serif;"><img src="https://res.cloudinary.com/dwsdggfi5/image/upload/c_scale,h_40/v1583438126/Images/Avatar/appa_logo_j9dof2.png" style="opacity: 1"> Hotline Coffee </a>-->
+            <!--            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
+            <!--                Menu-->
+            <!--                <i class="fas fa-bars"></i>-->
+            <!--            </button>-->
             <div class="<!--collapse--> navbar-collapse" id="categoryBarResponsive">
                 <ul class="navbar-nav ml-auto">
 
                     <li class="breadcrumb-item">
-                        <a class="nav-link" href="/"> All </a>&emsp;
+                        <a class="nav-link text-nowrap" href="/"><button type="button" class="btn btn-sm btn-outline-dark">All</button></a>&emsp;
                     </li>
 
                     <div th:each="category : ${categories}">
                         <li class="breadcrumb-item">
-                            <a class="nav-link" th:href="@{/category/{id}(id=${category.id})}" th:text="${category.name}"></a>&emsp;
+                            <a class="nav-link text-nowrap" th:href="@{/category/{id}(id=${category.id})}" th:inline="text"><button type="button" class="btn btn-sm btn-outline-dark">[[${category.name}]]</button></a>&emsp;
                         </li>
                     </div>
 
@@ -93,6 +98,14 @@
             </div>
         </div>
     </nav>
+
+</div>
+
+
+<!-- Footer -->
+<div class="footer" th:fragment="footer">
+    <br><br><br><br>
+    <br><br><br><br>
 
 </div>
 
