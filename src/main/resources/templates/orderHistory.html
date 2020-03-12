@@ -45,14 +45,16 @@
                 <td><img th:src="${product.image}" class="img-thumbnail"></td>
                 <td th:inline="text"><strong>[[${product.name}]]</strong></td>
                 <td th:text="${product.description}"></td>
-                <td th:text="${product.price}"></td>
+                <td class="text-nowrap" th:inline="text"><strong>$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]</strong></td>
+               <!-- <td th:text="${product.price}"></td>-->
             </tr>
 
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td th:inline="text"><strong>Total<br>[[${cart.sum}]]</strong></td>
+                <td class="text-nowrap" th:inline="text"><strong>Order Total<br>$ [[${#numbers.formatDecimal(cart.sum, 0, 'COMMA', 2, 'POINT')}]]</strong></td>
+                <!--<td th:inline="text"><strong>Total<br>[[${cart.sum}]]</strong></td>-->
             </tr>
             </tbody>
         </table>

@@ -248,15 +248,18 @@
                         <td><img th:src="${product.image}" class="img-thumbnail"></td>
                         <td th:inline="text"><strong>[[${product.name}]]</strong></td>
                         <td th:text="${product.description}"></td>
-                        <td th:text="${product.price}"></td>
+                        <td class="text-nowrap" th:inline="text"><strong>$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]</strong></td>
+                        <!--<td th:text="${product.price}"></td>-->
                     </tr>
 
                     <tr>
                         <td></td>
                         <td></td>
-                        <td th:inline="text"><strong>Cart Total<br>[[${cart.sum}]]</strong></td>
+                        <!--<td th:inline="text"><strong>Cart Total<br>[[${cart.sum}]]</strong></td>-->
+                        <td class="text-nowrap" th:inline="text"><strong>Cart Total<br>$ [[${#numbers.formatDecimal(cart1.sum, 0, 'COMMA', 2, 'POINT')}]]</strong></td>
                         <p><strong>Free Shipping on Orders Over $50, $7.99 Standard Shipping on Orders Under $50</strong></p>
-                        <td th:inline="text"><strong>Total w/Shipping<br>[[${cart.total}]]</strong></td>
+                        <!--<td th:inline="text"><strong>Total w/Shipping<br>[[${cart.total}]]</strong></td>-->
+                        <td class="text-nowrap" th:inline="text"><strong>Total w/Shipping<br>$ [[${#numbers.formatDecimal(cart1.total, 0, 'COMMA', 2, 'POINT')}]]</strong></td>
                     </tr>
                     </tbody>
                 </table>

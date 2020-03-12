@@ -1,6 +1,8 @@
 package com.example.samazon;
-
+import java.math.BigDecimal;
 import javax.persistence.*;
+
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,12 +10,15 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
+
     private long id;
     private String name;
     private String description;
     private String image;
     private double price;
     private boolean onSale;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")

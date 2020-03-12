@@ -35,7 +35,8 @@
                 <h1 th:inline="text">[[${product.name}]]</h1>
                 <div th:inline="text">Description: [[${product.description}]]</div>
                 <div th:inline="text">Category: [[${product.category.name}]]</div>
-                <div th:inline="text">$[[${product.price}]]</div>
+                <div class="text-nowrap" th:inline="text"><strong>Product Price: $ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]</strong></div>
+                <!--<div th:inline="text">$[[${product.price}]]</div>-->
 
                 <br>
 
