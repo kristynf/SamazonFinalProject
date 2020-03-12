@@ -18,12 +18,12 @@
 <div class="navigation" th:fragment="navbar">
 
     <div class="container" style="text-align: center">
-        <img src="/images/logo/samazoncoffee_inverse.png" alt="Samazon Coffee Logo" style="width: 100%">
+        <a href="/"><img src="/images/logo/samazoncoffee_inverse.png" alt="Samazon Coffee Logo" style="width: 100%"></a>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark <!--fixed-top-->" id="mainNav" >
         <div class="container"><!-- style="font-family: 'Spectral SC', serif;">-->
-            <a class="navbar-brand" href="/"> <!--style="font-family: 'Julius Sans One', sans-serif;">--><img src="https://res.cloudinary.com/dwsdggfi5/image/upload/c_scale,h_40/v1583438126/Images/Avatar/appa_logo_j9dof2.png" style="opacity: 1"> Hotline Coffee </a>
+            <a class="navbar-brand" href="/"> <!--style="font-family: 'Julius Sans One', sans-serif;">--><img src="https://res.cloudinary.com/dblb2mhw4/image/upload/c_scale,h_60/v1584040171/Logo/whitecuplogo_med6d8.png"> Get your Fix. </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -33,7 +33,7 @@
 
                     <li class="nav-item">
                         <form th:action="@{/search}" method="post">
-                            <input type="text" name="search" placeholder="Search for a product" required> <!--the "search" from RequestParam-->
+                            <input type="text" size="75" name="search" placeholder="Search for a product" required> <!--the "search" from RequestParam-->
                             <input type="submit" value="Enter">
                         </form>
                     </li>
@@ -55,7 +55,7 @@
                     <!--                    </li>-->
 
                     <li class="nav-item" th:if="${user_id} != null">
-                        <a class="nav-link" th:href="@{/cart/{user_id}(user_id=${user_id})}"> <button type="button" class="btn btn-primary">Cart</button> </a>
+                        <a class="nav-link" th:href="@{/cart/{user_id}(user_id=${user_id})}"> <button type="button" class="btn btn-warning">Cart</button> </a>
                     </li>
 
                 </ul>
@@ -69,7 +69,7 @@
 <!-- Category Menu Bar -->
 <div class="navigation" th:fragment="categorybar">
 
-    <nav class="navbar navbar-expand-lg navbar-dark <!--fixed-top-->" id="categoryNav">
+    <nav class="navbar navbar-expand-lg navbar-dark <!--fixed-top-->" id="categoryNav" style="background: #d8cfb5; color: black ">
         <div class="container"> <!--style="font-family: 'Spectral SC', serif;"-->
 <!--            <a class="navbar-brand" href="/" style="font-family: 'Julius Sans One', sans-serif;"><img src="https://res.cloudinary.com/dwsdggfi5/image/upload/c_scale,h_40/v1583438126/Images/Avatar/appa_logo_j9dof2.png" style="opacity: 1"> Hotline Coffee </a>-->
 <!--            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
