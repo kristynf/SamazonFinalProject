@@ -80,6 +80,8 @@ public class HomeController {
         String username = principal.getName();  /* Principal.getName <-- this gets you the current user's "username" */
         model.addAttribute("user", userRepository.findByUsername(username));
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+
 
         return "secure";
     }
@@ -125,6 +127,7 @@ public class HomeController {
         model.addAttribute("category", categoryRepository.findById(id).get());
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
 //        model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
 
         //check for currently logged in "user", if no current user then set to "0" to prevent errors
@@ -132,6 +135,7 @@ public class HomeController {
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
             return "category";
         } catch (Exception e){
             model.addAttribute("product_user_id", 0);
@@ -153,6 +157,7 @@ public class HomeController {
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
             return "searchlist";
         } catch (Exception e){
             model.addAttribute("product_user_id", 0);
@@ -236,6 +241,8 @@ public class HomeController {
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
+            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+
             return "show";
         } catch (Exception e){
             model.addAttribute("product_user_id", 0);
@@ -335,7 +342,7 @@ public class HomeController {
         try {
             username = principal.getName();
             model.addAttribute("product_user_id", userRepository.findByUsername(principal.getName()).getId());
-//            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+            model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
             return "cart";
         } catch (Exception e) {
             model.addAttribute("product_user_id", 0);
@@ -347,8 +354,10 @@ public class HomeController {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //EMPTY CART PAGE
     @RequestMapping("/emptycart")
-    public String emptycart(Model model){
+    public String emptycart(Model model, Principal principal){
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+
 
         return "emptycart";
     }
@@ -399,6 +408,8 @@ public class HomeController {
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
+        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+
 
         return "orderHistory";
     }
@@ -449,10 +460,12 @@ public class HomeController {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //FINAL CONFIRMATION PAGE BEFORE PLACING ORDER
     @RequestMapping("/finalConfirm")
-    public String finalConfirm(Model model){
+    public String finalConfirm(Model model, Principal principal){
         model.addAttribute("user", new User());
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
+        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+
 
 //        model.addAttribute("carts", cartRepository.findAll());
 
