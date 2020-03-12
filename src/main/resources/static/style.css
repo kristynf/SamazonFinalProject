@@ -10,29 +10,42 @@ body {
     /*-o-background-size: cover;*/
     /*background-size: cover;*/
 
-    background: url("https://res.cloudinary.com/dblb2mhw4/image/upload/v1583855744/background01_qlxja0.jpg") no-repeat center center fixed;
+    /*background: url("https://res.cloudinary.com/dblb2mhw4/image/upload/v1583855744/background01_qlxja0.jpg") no-repeat center center fixed;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 
-    background-color: rgba(0, 0, 0, 0.62);
-    background-blend-mode: darken;
+    /*background-color: rgba(0, 0, 0, 0.66);*/
+    /*background-blend-mode: darken;*/
+
+    background-color: rgb(0, 0, 0);
+
 }
-    /*http://mrcoffee.just-themes.com/*/
 
-    /*color: #b89d64;*/
-    /*color: #513826;*/
-    /*color: #2b1b13;*/
 
-    /*color: #f5f2eb;*/
-    /*color: #e5e0d6;*/
-    /*color: #d8cfb5;*/
-    /*color: #b89d64;*/
-    /*color: #bfa773;*/
-    /*color: #2b1b13;*/
-    /*color: #2c1910;*/
-    /*color: #1e130e;*/
+.colors{
+    http://mrcoffee.just-themes.com/
+
+    color: #b89d64;
+    color: #513826;
+    color: #2b1b13;
+
+    color: #f5f2eb;
+    color: #e5e0d6;
+    color: #d8cfb5;
+    color: #b89d64;
+    color: #bfa773;
+    color: #2b1b13;
+    color: #2c1910;
+    color: #1e130e;
+}
+
+.card-img-top {
+    /*width: 100%;*/
+    /*height: 200px;*/
+    /*object-fit: cover;*/
+}
 
 
 .vimeo-wrapper {

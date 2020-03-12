@@ -24,7 +24,7 @@
 </div>
 
 <!--Card Deck of All Products-->
-<div class="container bg-faded text-white">
+<div class="container text-white">
 
     <div class="row">
         <hr class="mt-2 mb-5">
@@ -43,11 +43,11 @@
                             <p th:inline="text"><strong>[[${product.name}]]</strong></p>
                             <p th:inline="text" style="font-style: italic">[[${product.category.name}]]</p>
                             <hr class="text-muted">
-                            <p th:inline="text"><strong style="color: brown">[[${product.price}]]</strong></p>
+                            <p th:inline="text"><strong style="color: red">[[${product.price}]]</strong></p>
                             <p th:inline="text">[[${product.description}]]</p>
                         </div>
                         <div class="card-footer">
-                            <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary stretched-link" >Details</button></a>
+                            <a th:href="@{/detail/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-primary" >Details</button></a>
                             <a th:href="@{/addToCart/{id}(id=${product.id})}"><button type="button" class="btn btn-sm btn-success" >Add to Cart</button></a>
                             <br><br>
                             <div th:if="${product.user.getId()} == ${product_user_id}">

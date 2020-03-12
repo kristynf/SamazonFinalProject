@@ -91,50 +91,6 @@ public class DataLoader implements CommandLineRunner {
         categoryRepository.save(category);
 
 
-        //        COFFEE BEAN----------------------------------------------
-        category = new Category();
-        category.setName("Coffee Bean");
-        product = new Product("Breakfast Blend 1lb", "Our Master Roaster created this blend specifically for your perfect breakfast cup of coffee. It’s just the “jolt” you need to get going in the morning! This is a medium-bodied blend of light and dark beans with a hint of acidity and tartness.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 6.99, false, category, user);
-        products = new HashSet<>();
-        products.add(product);
-        category.setProducts(products);
-        categoryRepository.save(category);
-        product.setCategory(category);
-        productRepository.save(product);
-
-        product = new Product("Breakfast Blend 5lb", "Our Master Roaster created this blend specifically for your perfect breakfast cup of coffee. It’s just the “jolt” you need to get going in the morning! This is a medium-bodied blend of light and dark beans with a hint of acidity and tartness.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 27.99, false, category, user);
-        products.add(product);
-        product.setCategory(category);
-        productRepository.save(product);
-
-        product = new Product("Dark Sumatra Mandheling 1lb", "A staple of coffee shops throughout the world, Sumatra has a rich, earthy flavor and is considered to be among the finest beans available. ", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 7.99, false, category, user);
-        products.add(product);
-        product.setCategory(category);
-        productRepository.save(product);
-
-        product = new Product("Dark Sumatra Mandheling 5lb", "A staple of coffee shops throughout the world, Sumatra has a rich, earthy flavor and is considered to be among the finest beans available.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 26.99, false, category, user);
-        products.add(product);
-        product.setCategory(category);
-        productRepository.save(product);
-
-        product = new Product("Ethiopian Yirgacheffe 1lb", "This single-origin Ethiopian coffee offers a smooth yet surprisingly deep body and crisp acidity. Displaying a sweet, floral aroma and flavor notes reminiscent of citrus and wine.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 7.99, false, category, user);
-        products.add(product);
-        product.setCategory(category);
-        productRepository.save(product);
-
-        product = new Product("Ethiopian Yirgacheffe 5lb", "This single-origin Ethiopian coffee offers a smooth yet surprisingly deep body and crisp acidity. Displaying a sweet, floral aroma and flavor notes reminiscent of citrus and wine.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 27.99, false, category, user);
-        products.add(product);
-        product.setCategory(category);
-        productRepository.save(product);
-
-        //add set<>products to category and save to repository
-        category.setProducts(products);
-        categoryRepository.save(category);
-
-
-
-
-
 
         //        KETTLE ----------------------------------------------
         category = new Category();
@@ -300,6 +256,50 @@ public class DataLoader implements CommandLineRunner {
         //add set<>products to category and save to repository
         category.setProducts(products);
         categoryRepository.save(category);
+
+
+
+        //        COFFEE BEAN----------------------------------------------
+        category = new Category();
+        category.setName("Coffee Bean");
+        product = new Product("Breakfast Blend 1lb", "Our Master Roaster created this blend specifically for your perfect breakfast cup of coffee. It’s just the “jolt” you need to get going in the morning! This is a medium-bodied blend of light and dark beans with a hint of acidity and tartness.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 6.99, false, category, user);
+        products = new HashSet<>();
+        products.add(product);
+        category.setProducts(products);
+        categoryRepository.save(category);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        product = new Product("Breakfast Blend 5lb", "Our Master Roaster created this blend specifically for your perfect breakfast cup of coffee. It’s just the “jolt” you need to get going in the morning! This is a medium-bodied blend of light and dark beans with a hint of acidity and tartness.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 27.99, false, category, user);
+        products.add(product);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        product = new Product("Dark Sumatra Mandheling 1lb", "A staple of coffee shops throughout the world, Sumatra has a rich, earthy flavor and is considered to be among the finest beans available. ", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 7.99, false, category, user);
+        products.add(product);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        product = new Product("Dark Sumatra Mandheling 5lb", "A staple of coffee shops throughout the world, Sumatra has a rich, earthy flavor and is considered to be among the finest beans available.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 26.99, false, category, user);
+        products.add(product);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        product = new Product("Ethiopian Yirgacheffe 1lb", "This single-origin Ethiopian coffee offers a smooth yet surprisingly deep body and crisp acidity. Displaying a sweet, floral aroma and flavor notes reminiscent of citrus and wine.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 7.99, false, category, user);
+        products.add(product);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        product = new Product("Ethiopian Yirgacheffe 5lb", "This single-origin Ethiopian coffee offers a smooth yet surprisingly deep body and crisp acidity. Displaying a sweet, floral aroma and flavor notes reminiscent of citrus and wine.", "https://res.cloudinary.com/dblb2mhw4/image/upload/v1583861619/CoffeeBag_slfejy.jpg", 27.99, false, category, user);
+        products.add(product);
+        product.setCategory(category);
+        productRepository.save(product);
+
+        //add set<>products to category and save to repository
+        category.setProducts(products);
+        categoryRepository.save(category);
+
+
 
 
     }

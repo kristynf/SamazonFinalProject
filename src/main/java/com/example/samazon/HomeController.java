@@ -413,6 +413,9 @@ public class HomeController {
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
         model.addAttribute("categories", categoryRepository.findAll());
 
+        Cart currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
+        model.addAttribute("cart1", currentCart);
+
         return "checkout";
     }
 
@@ -425,45 +428,6 @@ public class HomeController {
     }
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    //FINAL CONFIRMATION PAGE BEFORE PLACING ORDER
-    @RequestMapping("/finalConfirm")
-    public String finalConfirm(Model model){
-        model.addAttribute("user", new User());
-        model.addAttribute("categories", categoryRepository.findAll());
-
-//        model.addAttribute("carts", cartRepository.findAll());
-
-        SimpleMailMessage msg = new SimpleMailMessage(); //send confirmation email
-        msg.setTo(userService.getUser().getEmail()); //add comma in between emails to send to multiple accounts
-
-        msg.setSubject("Thank you for your order");
-        msg.setText("Thank you for your order \n You will arrive within 10 days");
-
-        javaMailSender.send(msg);
-
-//        Cart currentCart = new Cart();
-//        currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
-//        currentCart.setEnabled(false);
-//        cartRepository.save(currentCart);
-
-        return "finalConfirm";
-
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    //PLACE ORDER
-    @RequestMapping("/placeOrder")
-    public String placeOrder(){
-        return "placeOrder";
-    }
-    //send email
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    //THANK YOU, ORDER PLACED
-    //currentCart.setEnabled = "false";         //move this order from "active" to "past order"
-    //"back to Home" button
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //Credit form
 
@@ -475,8 +439,39 @@ public class HomeController {
         model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
         model.addAttribute("categories", categoryRepository.findAll());
 
+        Cart currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
+        model.addAttribute("cart1", currentCart);
+
         return "creditform";
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //FINAL CONFIRMATION PAGE BEFORE PLACING ORDER
+    @RequestMapping("/finalConfirm")
+    public String finalConfirm(Model model){
+        model.addAttribute("user", new User());
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("carts", cartRepository.findAll());
+
+//        model.addAttribute("carts", cartRepository.findAll());
+
+        SimpleMailMessage msg = new SimpleMailMessage(); //send confirmation email
+        msg.setTo(userService.getUser().getEmail()); //add comma in between emails to send to multiple accounts
+
+        msg.setSubject("Thank you for your order");
+        msg.setText("Thank you for your order \n You will arrive within 10 days");
+
+        javaMailSender.send(msg);
+
+        Cart currentCart = cartRepository.findByEnabledAndUser(true, userService.getUser());
+        currentCart.setEnabled(false);
+        cartRepository.save(currentCart);
+
+        return "finalConfirm";
+
+    }
+
 
 
 } //end HomeController
