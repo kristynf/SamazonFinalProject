@@ -35,10 +35,10 @@
     <div class="row"> <!--text-center text-lg-left-->
 <!--        <div class="card-deck">-->
         <!-- List of Products -->
-        <div th:each="product : ${category.products}" class="col-lg-3 col-md-4 col-6 mb-4">
+        <div th:each="product : ${category.products}" class="col-lg-3 col-md-4 col-6 mb-4" style="margin: 20px">
 
-            <div class="card mx-auto" style="width: 18rem; height: 100%; color: black;">
-                <img class="card-img-top" th:src="${product.image}" alt="">
+            <div class="card mx-auto" style="width: 18rem; height: 100%; color: black; margin: 20px">
+                <img class="card-img-top" th:src="${product.image}" alt="" style="height: 200px; object-fit: contain">
                 <div class="card-img-top">
                     <!--<p th:inline="text"><strong>[[${product.name}]]</strong></p>-->
                 </div>

@@ -37,7 +37,7 @@ public class Product {
     /////////////////////////////////////////////////////////////
 
     public Product() {
-        this.image="https://res.cloudinary.com/dwsdggfi5/image/upload/v1583268617/defaultcarImage_kijrsj.jpg";
+        this.image="https://res.cloudinary.com/dblb2mhw4/image/upload/v1583855747/outside03_vky9zi.jpg";
     }
 
     public Product(String name, String description, String image, double price, boolean onSale, Category category, User user) {

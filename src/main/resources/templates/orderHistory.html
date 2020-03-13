@@ -32,7 +32,7 @@
 
         <table class="table table-dark table-hover table-striped">
             <thead>
-            <tr style="font-family: 'Spectral SC', serif;">
+            <tr>
                 <td></td>
                 <td>Product</td>
                 <td>Description</td>
@@ -52,10 +52,17 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td class="text-nowrap" th:inline="text"><strong>Order Total<br>$ [[${#numbers.formatDecimal(cart.sum, 0, 'COMMA', 2, 'POINT')}]]</strong></td>
-                <!--<td th:inline="text"><strong>Total<br>[[${cart.sum}]]</strong></td>-->
+                <td style="float: right">Cart Total</td>
+                <td th:inline="text">$ [[${#numbers.formatDecimal(cart.sum, 0, 'COMMA', 2, 'POINT')}]]</td>
             </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="float: right"><strong>Total w/ Shipping</strong></td>
+                <td th:inline="text"><strong>$ [[${#numbers.formatDecimal(cart.total, 0, 'COMMA', 2, 'POINT')}]]</strong></td>
+            </tr>
+
             </tbody>
         </table>
 
