@@ -41,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/detail/**", "/base", "/category/**", "/register", "/search", "/show",
                         "/emptycart", "/samazoncoffee60.svg", "/samazoncoffee.png").permitAll() //.access("hasAnyAuthority('USER','ADMIN')")   //4.04 ADDING H2 DATABASE
 
-                .antMatchers("/admin", "/addCategory", "/addProduct").access("hasAuthority('ADMIN')")
+                .antMatchers("/admin", "/addCategory", "/addProduct", "/delete/**").access("hasAuthority('ADMIN')")
 
                 .anyRequest().authenticated()
                 .and().formLogin()/*remove this for default login template >> */.loginPage("/login")/* << */.permitAll() //4.02 ADD CUSTOM LOGIN PAGE USING: .loginPage("/login").permitAll();

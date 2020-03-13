@@ -25,7 +25,7 @@
     <br>
 
     <!--List Products in Cart-->
-    <div th:each="cart : ${carts}">
+    <div th:each="cart : ${currentUserCarts}">
 <!--        <div th:if="${cart.isEnabled()} == false">-->
 
         <h1 th:inline="text">Order ID#: [[${cart.id}]]</h1>
@@ -68,9 +68,8 @@
 
 <!--        </div>-->
     </div>
-
-
 </div>
+
 
 
 

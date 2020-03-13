@@ -133,4 +133,12 @@ public class User {
         this.products = products;
     }
 
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
+
 }

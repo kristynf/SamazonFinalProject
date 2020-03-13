@@ -409,7 +409,18 @@ public class HomeController {
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("carts", cartRepository.findAll());
-        model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());
+        /*model.addAttribute("user_id", userRepository.findByUsername(principal.getName()).getId());*/
+        model.addAttribute("user_id", userService.getUser().getId());
+
+
+        User currentUser = userService.getUser();
+        Set<Cart> currentUserCarts = currentUser.getCarts();
+
+
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentUserCarts", currentUserCarts);
+
+
 
 
         return "orderHistory";
@@ -471,6 +482,7 @@ public class HomeController {
 //        model.addAttribute("carts", cartRepository.findAll());
 
         SimpleMailMessage msg = new SimpleMailMessage(); //send confirmation email
+        msg.setTo(userService.getUser().getEmail()); //add comma in between emails to send to multiple accounts
         msg.setTo(userService.getUser().getEmail()); //add comma in between emails to send to multiple accounts
 
         msg.setSubject("Thank you for your order");

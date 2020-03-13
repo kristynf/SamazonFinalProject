@@ -57,7 +57,6 @@
                         <p th:inline="text" style="font-style: italic">[[${product.category.name}]]</p>
                         <hr class="text-muted">
                         <p class="text-nowrap" th:inline="text"><strong>$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]</strong></p>
-                        <!--<p th:inline="text"><strong style="color: red">[[${product.price}]]</strong></p>-->
                         <p th:inline="text">[[${product.description}]]</p>
                     </div>
                     <div class="card-footer">

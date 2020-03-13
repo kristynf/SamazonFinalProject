@@ -32,8 +32,7 @@
 
 <!--List of Products in Selected Category-->
 <div class="container text-white">
-    <div class="row"> <!--text-center text-lg-left-->
-<!--        <div class="card-deck">-->
+    <div class="row">
         <!-- List of Products -->
         <div th:each="product : ${category.products}" class="col-lg-3 col-md-4 col-6 mb-4" style="margin: 20px">
 
@@ -46,7 +45,7 @@
                     <p th:inline="text"><strong>[[${product.name}]]</strong></p>
                     <p th:inline="text" style="font-style: italic">[[${product.category.name}]]</p>
                     <hr class="text-muted">
-                    <p th:inline="text"><strong style="color: red">[[${product.price}]]</strong></p>
+                    <p th:inline="text" class="text-nowrap"><strong>$[[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]</strong></p>
                     <p th:inline="text">[[${product.description}]]</p>
                 </div>
                 <div class="card-footer">

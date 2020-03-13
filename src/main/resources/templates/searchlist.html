@@ -25,26 +25,22 @@
 
 <!--Card Deck of All Products-->
 <div class="container text-white">
-
     <div class="row">
-        <hr class="mt-2 mb-5">
-        <div class="row text-center text-lg-left">
 
             <!-- List of Products -->
-            <div class="card-deck">
-                <div th:each="product : ${productSearch}" class="col-lg-3 col-md-4 col-6" style="margin">
+<!--            <div class="card-deck">-->
+                <div th:each="product : ${productSearch}" class="col-lg-3 col-md-4 col-6 mb-4" style="margin: 20px">
 
-                    <div class="card" style="width: 18rem; height: 100%; color: black">
+                    <div class="card mx-auto" style="width: 18rem; height: 100%; color: black; margin: 20px; /*background: #d8cfb5*/">
                         <img class="card-img-top" th:src="${product.image}" alt="" style="height: 200px; object-fit: contain">
                         <div class="card-img-top">
                             <!--<p th:inline="text"><strong>[[${product.name}]]</strong></p>-->
                         </div>
-                        <div class="card-body" style="color: black">
+                        <div class="card-body">
                             <p th:inline="text"><strong>[[${product.name}]]</strong></p>
                             <p th:inline="text" style="font-style: italic">[[${product.category.name}]]</p>
                             <hr class="text-muted">
-                            <td class="text-nowrap" th:inline="text"><strong>$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]</strong></td>
-                            <!--<p th:inline="text"><strong style="color: red">[[${product.price}]]</strong></p>-->
+                            <p class="text-nowrap" th:inline="text"><strong>$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}]]</strong></p>
                             <p th:inline="text">[[${product.description}]]</p>
                         </div>
                         <div class="card-footer">
@@ -58,10 +54,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-    </div>
+<!--        </div>-->
 
 </div>
 
