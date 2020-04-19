@@ -1,6 +1,6 @@
-# Non-Profit Website
+# Sample e-Commerce Website
 
-Web application to showcase a non-profit organization.
+Web application to buy and sell product.
 
 ## Preview
 
