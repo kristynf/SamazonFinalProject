@@ -18,6 +18,7 @@ Run in IDE and open a web browser to your default localhost port (generally this
 ## Built With
 
 * [Java 8](https://www.java.com/en/) - Backend Language
+* [Spring Boot](https://spring.io/projects/spring-boot) - Framework
 * [IntelliJ](https://www.jetbrains.com/idea/) - IDE used
 * [Maven](http://maven.apache.org/) - Dependency Management
 * [Thymeleaf](http://www.thymeleaf.org/) - Template Engine
